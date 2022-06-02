@@ -11,13 +11,13 @@
 </head>
 <body class="bg-gray-100">
     <header class="p-5 border-b bg-white ">
-        <div class="container mx-auto flex items-center justify-end">
-            <h1 class="text-3xl font-black flex">
+        <div class="container mx-auto flex items-center justify-between">
+            <h1 class="flex text-3xl font-black">
                 Devstagram
             </h1>
             <nav class="flex gap-2 items-center">
-                <a class="font-bold uppercase text-gray-600 text-sm" href="#">Login</a>
-                <a class="font-bold uppercase text-gray-600 text-sm" href="/crear-cuenta">Crear Cuenta</a>
+                <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('login')}}">Login</a>
+                <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('register')}}">Crear Cuenta</a>
             </nav>
         </div>
     </header>
@@ -27,7 +27,7 @@
         </h2>
         @yield('contenido')
     </main>
-    <footer class="text-center p-5 text-gray-500 font-bold uppercase">
+    <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
         DevStagram - Todos los derechos reservdos {{ now()->year }}
     </footer>
         {{-- <h1 class="text-2xl" >@yield('titullo')</h1><hr> --}}

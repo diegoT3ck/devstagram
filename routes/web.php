@@ -16,4 +16,6 @@ use App\Http\Controllers\Auth\RegsterController;
 Route::get('/', function () {
     return view('layouts.app');
 });
-Route::get('/crear-cuenta',[RegsterController::class, 'index']);
+Route::get('/crear-cuenta',[RegsterController::class, 'index'])->name('register');
+Route::post('/nuevo-usuario',[RegsterController::class, 'store']);
+Route::get('/login',[RegsterController::class, 'index'])->name('login');
