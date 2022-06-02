@@ -40,7 +40,7 @@
                     value="{{old('username')}}"
                     />
                             @error('username')
-                            <p class="bg-red-500 text-white my-3 rounded-lg text-sm p-1">{{$message}}</p>
+                            <p class="bg-red-500 text-white my-3 rounded-lg text-sm p-1 text-center">{{$message}}</p>
                             @enderror
                 </div>
                 <div class="mb-5">
@@ -56,7 +56,7 @@
                     value="{{old('email')}}"
                     />
                             @error('email')
-                            <p class="bg-red-500 text-white my-3 rounded-lg text-sm p-1">{{$message}}</p>
+                            <p class="bg-red-500 text-white my-3 rounded-lg text-sm p-1 text-center">{{$message}}</p>
                             @enderror
                 </div>
                 <div class="mb-5">
@@ -72,7 +72,7 @@
                     value="{{old('password')}}"
                     />
                             @error('password')
-                            <p class="bg-red-500 text-white my-3 rounded-lg text-sm p-1">{{$message}}</p>
+                            <p class="bg-red-500 text-white my-3 rounded-lg text-sm p-1 text-center">{{$message}}</p>
                             @enderror
                 </div>
                 <div class="mb-5">
@@ -88,7 +88,7 @@
                     value="{{old('password_confirmation')}}"
                     />
                             @error('password_confirmation')
-                            <p class="bg-red-500 text-white my-3 rounded-lg text-sm p-1">{{$message}}</p>
+                            <p class="bg-red-500 text-white my-3 rounded-lg text-sm p-1 text-center">{{$message}}</p>
                             @enderror
                 </div>
                 <input 
