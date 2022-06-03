@@ -18,7 +18,7 @@
             </form>
         </div>
         <div class="md:w-1/2 p-10 bg-white rounded-t-lg shadow-xl mt-10 md:mt-0">
-            <form action="/nuevo-usuario" method="POST">
+            <form action="{{route('post.store')}}" method="POST">
                 @csrf
                 <div class="mb-5 ">
                     <label for="titulo" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -43,13 +43,23 @@
                     id="descripcion"
                     name="descripcion"
                     placeholder="Descripcion de la publicacion" 
-                    class="border p-3 w-full rounded-lg @error('descripcion') border-red-500 @enderror">
-                    {{old('descripcion')}}
-                    </textarea>
+                    class="border p-3 w-full rounded-lg @error('descripcion') border-red-500 @enderror"
+                    >{{old('descripcion')}}</textarea>
                             @error('descripcion')
                                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
                             @enderror
                     </div>
+                    <div class="mb-5">
+                        <input 
+                        name="imagen"
+                        type="hidden"
+                        value="{{old('imagen')}}"
+                        >
+                        @error('imagen')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
+                         @enderror
+                    </div>
+
                     <input 
                     type="submit" 
                     value="Publicar" 
