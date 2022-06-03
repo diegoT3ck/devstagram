@@ -43,7 +43,7 @@ class RegsterController extends Controller
 
 
 
-        return redirect()->route('post.index');
+        return redirect()->route('post.index',auth()->user()->username );
 
     }
 }
