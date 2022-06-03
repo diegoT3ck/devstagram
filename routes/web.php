@@ -20,10 +20,12 @@ use App\Http\Controllers\PostController;
 Route::get('/', function () {
     return view('layouts.app');
 });
-Route::get('/login',[LoginController::class, 'index'])->name('login');
-Route::post('/login',[LoginController::class, 'store']);
-Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/crear-cuenta',[RegsterController::class, 'index'])->name('register');
 Route::post('/nuevo-usuario',[RegsterController::class, 'store']);
 
-Route::get('/muro',[PostController::class, 'index'])->name('post.index');
+Route::get('/login',[LoginController::class, 'index'])->name('login');
+Route::post('/login',[LoginController::class, 'store']);
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
+Route::get('/{user:username}',[PostController::class, 'index'])->name('post.index');
+Route::get('post/create', [PostController::class, 'create'])->name('post.create');

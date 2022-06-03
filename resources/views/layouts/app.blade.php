@@ -15,9 +15,16 @@
             <h1 class="flex text-3xl font-black">
                 Devstagram
             </h1>
-            <nav class="flex gap-2 items-center">
+            <nav class="flex items-center ">
                 @auth
-                <a class="font-bold  text-gray-600 text-sm" href="#">Hola 
+                <a  
+                class="flex items-center gap-2 bg-waith border p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer"
+                href="{{ route('post.create') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                  </svg>Crear
+                </a>
+                <a class="font-bold  text-gray-600 text-sm" href="{{route('post.index', auth()->user()->username)}}">Hola 
                     <span class="font-normal">
                         {{auth()->user()->username}}
                     </span>
