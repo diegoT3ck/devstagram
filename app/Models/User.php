@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -42,4 +43,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function posts() {
+        //One to Many => Un usuario puede tener multiples posts
+        // usamos al modelo que queremos acceder Post::class
+        // se agrega , 'user_id' si laravel no lo relaciona directamente, 
+        // le marcamos la llave foranea de el modelo que vamos a acceder
+
+        return $this->HasMany(Post::class, 'user_id');
+    }
 }

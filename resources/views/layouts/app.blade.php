@@ -15,7 +15,7 @@
             <h1 class="flex text-3xl font-black">
                 Devstagram
             </h1>
-            <nav class="flex items-center ">
+            <nav class="flex items-center gap-8">
                 @auth
                 <a  
                 class="flex items-center gap-2 bg-waith border p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer"

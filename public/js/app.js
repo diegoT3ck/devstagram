@@ -20,12 +20,12 @@ var dropzone = new dropzone__WEBPACK_IMPORTED_MODULE_0__["default"]('#dropzone',
   maxFiles: 1,
   uploadMultiple: false,
   init: function init() {
-    if (document.querySelector('[name="imaen]').value.trim()) {
+    if (document.querySelector('[name="imagen"]').value.trim()) {
       var imagenPublicada = {};
       imagenPublicada.size = 1234;
       imagenPublicada.name = document.querySelector('[name="imagen"]').value;
       this.options.addedfile.call(this, imagenPublicada);
-      this.options.thumbnail.call(this, imagenPublicada, '/uploads/'.$imagenPublicada.name);
+      this.options.thumbnail.call(this, imagenPublicada, "/uploads/".concat(imagenPublicada.name));
       imagenPublicada.previewElement.classList.add('dz-success', 'dz-complete');
     }
   }
@@ -34,7 +34,7 @@ dropzone.on('success', function (file, response) {
   document.querySelector('[name="imagen"]').value = response.imagen;
 });
 dropzone.on('removedfile', function () {
-  console.log('Archivo eliminado');
+  document.querySelector('[name="imagen"]').value = "";
 });
 
 /***/ }),
