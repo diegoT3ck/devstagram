@@ -10,6 +10,8 @@ class LikeController extends Controller
     public function store(Request $request , Post $post) {
         $post->likes()->create([
             'user_id' => $request->user()->id,
+            //        return $this->likes->contains('user_id', $user->id);
+
         ]);
         return back();
     }
