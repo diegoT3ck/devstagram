@@ -10,8 +10,9 @@ class PostController extends Controller
 {
     public function  __construct()
     {
-        $this->middleware('auth');
-    }
+        //Solo los usuarios autenticados pueden ver el contenido a excepcion de algunos metodos
+        $this->middleware('auth')->except(['show', 'index']);
+    } 
     
     public function index(User $user) {
         // $posts = Post::where('user_id', $user->id)-get()
@@ -59,7 +60,10 @@ class PostController extends Controller
         return redirect()->route('post.index', auth()->user()->username );
 
     }
-    public function show($post) {
-        return view('post.show');
+    public function show(User $user, Post $post) {
+        return view('post.show', [
+            'post' => $post,
+            'user' => $user
+        ]);
     }
 }
