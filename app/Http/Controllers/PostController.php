@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -65,5 +66,24 @@ class PostController extends Controller
             'post' => $post,
             'user' => $user
         ]);
+    }
+        //Route Model Building -> por esto nos identifica el post que se va a eliminar
+    public function destroy(Post $post) {
+        // if ($post->user_id === auth()->user()->id) {dd('Si es la misma persona'); } 
+        // else {      dd('No es la misma persona'); <- En vez de todo esto }
+        $this->authorize('delete', $post);
+
+            $post->delete();
+
+            //Eliminar la imagen
+            $imagen_path = public_path('upload/'. $post->imagen);
+            if (File::exists($imagen_path)) {
+                unlink($imagen_path); // Es nativo php y mas efectivo que File::delete($path)
+                //File::delete($imagen_path);
+            }
+        
+            return redirect()->route('post.index', auth()->user()->username);
+
+        
     }
 }
