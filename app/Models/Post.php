@@ -30,7 +30,7 @@ class Post extends Model
         return $this->hasMany(Like::class);
     }
     public function checkLike(User $user) {        
+        //Revisa si en la tabla de likes, contiene el user_id
         return $this->likes->contains('user_id', $user->id);
-
     }
 }

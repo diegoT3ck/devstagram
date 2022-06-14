@@ -1,13 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegsterController;
-use App\Http\Controllers\ComentarioController;
-use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\Auth\RegsterController;
+use App\Http\Controllers\FollowerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,11 @@ Route::get('/', function () {
 Route::get('/crear-cuenta',[RegsterController::class, 'index'])->name('register');
 Route::post('/nuevo-usuario',[RegsterController::class, 'store']);
 
+//rutas para el perfil 
+Route::get('/editar-perfil', [PerfilController::class, 'index'])->name('perfil.index');
+Route::post('/editar-perfil', [PerfilController::class, 'store'])->name('perfil.store');
+
+
 Route::get('/login',[LoginController::class, 'index'])->name('login');
 Route::post('/login',[LoginController::class, 'store']);
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
@@ -39,5 +46,14 @@ Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.de
 Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'store'])->name('comentarios.store');
 
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
-
+//Like a las fotos
 Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('post.likes.store');
+Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('post.likes.destroy');
+
+//Siguiendo Usuario
+Route::post('/{user:username}/follow', [FollowerController::class, 'store'])->name('users.follow');
+Route::delete('/{user:username}/unfollow', [FollowerController::class, 'destroy'])->name('users.unfollow');
+//sail artisan make:model Follower -mc
+//sail artisan route:list
+//sail artisan route:cache
+//sail php artisan migrate:rollback --step=1
