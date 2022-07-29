@@ -19,7 +19,8 @@ class PerfilController extends Controller
     public function store(Request $request, User $user) {
         
         $request->request->add(['username' => Str::slug($request->username) ]);//reescribir el Request 
-        $this->validate($request, [
+        // in:string obligatorio
+        $this->validate($request, [ 
             'username' => 'required', 'unique:users,username,'.auth()->user()->id, 'min:3', 'max:20', 'not_in:twitter,editar-perfil'
         ]);
         if ($request->imagen) {

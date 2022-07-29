@@ -51,8 +51,31 @@ class User extends Authenticatable
         // le marcamos la llave foranea de el modelo que vamos a acceder
 
         return $this->HasMany(Post::class, 'user_id');
+        // el 'user_id' es opcional, porque ya tiene la tabla POST una llave foranea user_id  vinculada a la tabla users
     }
     public function likes() {
-        return $this->hasMany(Like::class);
+        // Aqui no agregamos nada, proque el modelo like, usa las ocnvenciones de laravel, 
+        // La tabla like, tiene una llave foreanea user_id que conecta a la tabla users, por eso no se agrega nadamas
+        return $this->HasMany(Like::class);
     }
+    //Almacena los seguidores de un usuario
+    public function followers(){
+        // Aqui nos salimos de las convenciones y asignamos manualmente la relacion hacia Users
+        // La el metodo 'followes' en la tabla de 'followers' pertenece a muchos usuarios
+        //  foreanea 'user_id', 'follower_id'
+        // El usuario va a terner el metodo de followers y va a insertar en la tabla 'followers' tanto el 'user_id', 'follower_id'
+        // user_id es el usuario que estamos visitando, follower_id es la persona que apreto el boton seguir
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+    // Almacenar los que seguirmos
+    public function followings() {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+    // Comprobar si un usuario ya sigue a otro | No tiene que ver con las relaciones
+    public function siguiendo(User $user) {
+        // iterar en toda la coleccion(tabla) de followers 
+        return $this->followers->contains($user->id);
+    }
+
+    //Almacenar los que te siguen
 }

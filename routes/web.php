@@ -10,6 +10,7 @@ use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\Auth\RegsterController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,7 @@ use App\Http\Controllers\FollowerController;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.app');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/crear-cuenta',[RegsterController::class, 'index'])->name('register');
 Route::post('/nuevo-usuario',[RegsterController::class, 'store']);
 
@@ -54,6 +53,6 @@ Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('
 Route::post('/{user:username}/follow', [FollowerController::class, 'store'])->name('users.follow');
 Route::delete('/{user:username}/unfollow', [FollowerController::class, 'destroy'])->name('users.unfollow');
 //sail artisan make:model Follower -mc
-//sail artisan route:list
-//sail artisan route:cache
+//sail artisan route:list  dice las rutas que soporta la app
+//sail artisan route:cache limpiar cache de las rutas
 //sail php artisan migrate:rollback --step=1

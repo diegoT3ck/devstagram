@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('followers', function (Blueprint $table) {
             $table->id();
+
+            //Aqui podriamosponer constrained('users'). pero no es necesario porque sigue la convencion de laravel
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            //follower_id esta relacionada con la tabla users
             $table->foreignId('follower_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
