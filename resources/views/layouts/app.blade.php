@@ -8,6 +8,7 @@
     @stack('styles')
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <script src="{{asset('js/app.js')}}" defer></script>
+    @livewireStyles
 </head>
 <body class="bg-gray-100">
     <header class="p-5 border-b bg-white ">
@@ -54,6 +55,6 @@
         DevStagram - Todos los derechos reservdos {{ now()->year }}
     </footer>
         {{-- <h1 class="text-2xl" >@yield('titullo')</h1><hr> --}}
-
+    @livewireScripts
 </body>
 </html>
